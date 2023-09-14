@@ -157,6 +157,6 @@ Run this command twice, and observe on the first run HTTP/2 will be used and the
 
 ## Known Issues
 
-1. You may occasionally encounter a `java.lang.IllegalStateException: Flusher@4df6445d[CLOSED]` from Jetty and this needs further investigation
+1. You may occasionally encounter a `java.lang.IllegalStateException: Flusher@4df6445d[CLOSED]` from Jetty ([GitHub Issue](https://github.com/eclipse/jetty.project/issues/10519))
 2. Once again, Chrome and Safari do not work due to the self-signed certificate
 3. The `ma` in the `Alt-Svc` header does not seem to be respected by Firefox (due to the self-signed cert?)
