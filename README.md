@@ -28,7 +28,7 @@ You may want to build a version of `curl` to play with HTTP/3 but this is option
 demonstration purposes. There is not yet an easily installed binary of `curl` with HTTP/3 enabled.
 
 `curl` can be built with a custom `.rb` script using `brew`. This may take a long time to build. The script
-originated from CloudFlare [here](wget https://raw.githubusercontent.com/cloudflare/homebrew-cloudflare/master/curl.rb)
+originated from CloudFlare [here](https://raw.githubusercontent.com/cloudflare/homebrew-cloudflare/master/curl.rb)
 and was tweaked because of a [build error](https://github.com/curl/curl/issues/11850) that will be fixed shortly.
 
 ```shell
