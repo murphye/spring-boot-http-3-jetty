@@ -4,8 +4,8 @@ This guide shows how to use HTTP/3 with Spring Boot and Jetty. **There is no "TL
 read the entire guide to learn how to experiment with HTTP/3. This is an involved process to have a fully
 working demo.
 
-If you want to learn more on the details of HTTP/3, this 
-[blog series](https://www.smashingmagazine.com/2021/08/http3-core-concepts-part1/) is highly recommended!
+This demo uses Jetty's HTTP/3 implementation and more information can be found in this [article](https://webtide.com/jetty-http-3-support/). 
+If you want to learn more on the details of HTTP/3, this [blog series](https://www.smashingmagazine.com/2021/08/http3-core-concepts-part1/) is highly recommended!
 
 > WARNING: This is a highly experimental demonstration of HTTP/3 using Spring Boot and Jetty.
 > Do not use for production applications!
@@ -25,11 +25,11 @@ If you want to learn more on the details of HTTP/3, this
 ## (Recommended) Build `curl` with HTTP/3 Support
 
 You may want to build a version of `curl` to play with HTTP/3 but this is optional, as a browser also works just for
-demonstration purposes. There is not yet an easily installed binary of `curl` with HTTP/3 enabled.
+demonstration purposes. There is not yet an easily installed binary of `curl` with HTTP/3 enabled. The official docs for 
+building `curl` for HTTP/3 are found [here](https://github.com/curl/curl/blob/master/docs/HTTP3.md).
 
 `curl` can be built with a custom `.rb` script using `brew`. This may take a long time to build. The script
-originated from CloudFlare [here](https://raw.githubusercontent.com/cloudflare/homebrew-cloudflare/master/curl.rb)
-and was tweaked because of a [build error](https://github.com/curl/curl/issues/11850) that will be fixed shortly.
+originated from CloudFlare [here](https://raw.githubusercontent.com/cloudflare/homebrew-cloudflare/master/curl.rb) and was tweaked because of a [build error](https://github.com/curl/curl/issues/11850) that will be fixed shortly.
 
 ```shell
 brew install --HEAD -s curl/curl.rb
