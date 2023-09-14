@@ -113,13 +113,13 @@ You should explore the following files as well to see the full implementation:
 The `Alt-Svc` header is added to alert a HTTP client that HTTP/3 is supported, and to use HTTP/3 for subsequent calls.
 You will observe this later in the demo.
 
-## (Required) Access `https://demo.local` from Firefox
+## (Required) Access Demo from Firefox
 
 As stated in the disclaimer above, Chrome and Safari will not work for this demo. You must use Firefox.
 
 Here is the process for the demo:
 
-1. Open `https://demo.local` using Firefox
+1. Open https://demo.local:8443 using Firefox
 2. Click "Accept the Risk and Continue" due to the self-signed certificate
 3. Right click and select "Inspect" in the menu
 4. Go to the "Network" tab
@@ -134,11 +134,7 @@ Here is the process for the demo:
 
 The outcome of the demo is shown in this screenshot:
 
-**First load (HTTP/2):**
-![First screenshot of Firefox.](images/firefox-screenshot-1.png)
-
-**Second load (HTTP/3):**
-![Second screenshot of Firefox.](images/firefox-screenshot-2.png)
+![Screenshot of Firefox with HTTP/3.](images/firefox-screenshot.png)
 
 ## (Recommended) Using `curl` with `--http3` and `alt-svc`
 
