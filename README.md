@@ -4,6 +4,9 @@ This guide shows how to use HTTP/3 with Spring Boot and Jetty. **There is no "TL
 read the entire guide to learn how to experiment with HTTP/3. This is an involved process to have a fully
 working demo.
 
+If you want to learn more on the details of HTTP/3, this 
+[blog series](https://www.smashingmagazine.com/2021/08/http3-core-concepts-part1/) is highly recommended!
+
 > WARNING: This is a highly experimental demonstration of HTTP/3 using Spring Boot and Jetty.
 > Do not use for production applications!
  
