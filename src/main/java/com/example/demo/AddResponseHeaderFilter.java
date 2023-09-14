@@ -16,9 +16,10 @@ public class AddResponseHeaderFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain chain) throws IOException, ServletException {
+
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
         httpServletResponse.setHeader(
-                "Alt-Svc", "h3=\":" + (serverPort + 1) + "\"; ma=3600, h2=\":" + serverPort + "\"; ma=3600");
+                "Alt-Svc", "h3=\":" + serverPort + "\"; ma=86400; persist=1");
         chain.doFilter(request, response);
     }
 }

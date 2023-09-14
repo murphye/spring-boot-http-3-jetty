@@ -43,7 +43,7 @@ public class JettyConfiguration implements WebServerFactoryCustomizer<JettyServl
                 connector.getQuicConfiguration().setPemWorkDirectory( // Must be set for Jetty
                         Paths.get(System.getProperty("java.io.tmpdir"))); // Default system temp directory
 
-                connector.setPort(serverPort + 1); // HTTP/3 needs to run on a separate port (i.e. 8444)
+                connector.setPort(serverPort);
                 server.addConnector(connector);
             }
         };
