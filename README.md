@@ -68,7 +68,7 @@ demo to work.
 
 Run `sudo nano /etc/hosts` and enter your password.
 
-Add you the file, as desired:
+Add to the file, as desired:
 ```
 127.0.0.1       demo.local
 ```
