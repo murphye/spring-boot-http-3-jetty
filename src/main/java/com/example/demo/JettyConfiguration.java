@@ -21,8 +21,11 @@ public class JettyConfiguration implements WebServerFactoryCustomizer<JettyServl
     @Autowired
     private DefaultSslBundleRegistry defaultSslBundleRegistry;
 
-    @Value( "${server.port}" )
+    @Value("${server.port}")
     private Integer serverPort;
+
+    @Value("${server.jetty.connection-idle-timeout}")
+    private Integer idleTimeout;
 
     @Override
     public void customize(JettyServletWebServerFactory factory) {
@@ -38,6 +41,7 @@ public class JettyConfiguration implements WebServerFactoryCustomizer<JettyServl
 
                 HttpConfiguration httpConfig = new HttpConfiguration();
                 httpConfig.addCustomizer(new SecureRequestCustomizer());
+                httpConfig.setIdleTimeout(idleTimeout);
 
                 HTTP3ServerConnector connector = new HTTP3ServerConnector(server, sslContextFactory, new HTTP3ServerConnectionFactory(httpConfig));
                 connector.getQuicConfiguration().setPemWorkDirectory( // Must be set for Jetty
