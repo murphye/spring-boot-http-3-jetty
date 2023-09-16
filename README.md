@@ -28,8 +28,16 @@ You may want to build a version of `curl` to play with HTTP/3 but this is option
 demonstration purposes. There is not yet an easily installed binary of `curl` with HTTP/3 enabled. The official docs for 
 building `curl` for HTTP/3 are found [here](https://github.com/curl/curl/blob/master/docs/HTTP3.md).
 
-`curl` can be built with a custom `.rb` script using `brew`. This may take a long time to build. The script
-originated from CloudFlare [here](https://raw.githubusercontent.com/cloudflare/homebrew-cloudflare/master/curl.rb) and was tweaked because of a [build error](https://github.com/curl/curl/issues/11850) that will be fixed shortly.
+`curl` can be built with a custom `.rb` script using `brew`. The script originated from CloudFlare [here](https://raw.githubusercontent.com/cloudflare/homebrew-cloudflare/master/curl.rb) 
+and was tweaked because of a [build error](https://github.com/curl/curl/issues/11850) that will be fixed shortly.
+
+First, uninstall `curl` if previously installed through `brew`.
+
+```shell
+brew uninstall curl
+```
+
+Now, you can run the installation, which may take several minutes.
 
 ```shell
 brew install --HEAD -s curl/curl.rb
@@ -59,6 +67,8 @@ Features: alt-svc AsynchDNS brotli GSS-API HSTS HTTP2 HTTP3 HTTPS-proxy IDN IPv6
 ```
 
 We will come back to using `curl` later in this guide.
+
+> Note: Running `brew upgrade` may wipe out your custom compiled `curl` and replace with the one from the package manager.
 
 ## (Required) Add `demo.local` to your `/etc/hosts`
 
@@ -131,7 +141,7 @@ Here is the process for the demo:
 7. Select "Protocol" from the menu
 8. Observe that HTTP/2 was used for this first page load
 9. Click the Reload button in the URL bar again
-10. Observe that HTTP/3 was used for the second page load (if still HTTP/2, try to reload again)
+10. Observe that HTTP/3 was used for the second page load (if still HTTP/2, reload repeatedly until HTTP/3)
 11. Click on the HTTP request in the "Network" panel to open the "Headers" panel
 12. Observe the `alt-svc h3=":8443"; ma=86400; persist=1` header with `h3` to inform the browser HTTP/3 is supported
 
@@ -156,10 +166,11 @@ HTTP/3 is supported, and can be run as such:
 curl -k -v --alt-svc /tmp/altcache https://demo.local:8443
 ```
 
-Run this command twice, and observe on the first run HTTP/2 will be used and the second run HTTP/3 will be used.
+Run this command twice , and observe on the first run HTTP/2 will be used and the second run HTTP/3 will be used 
+(if still HTTP/2, wait a second and try again).
+
 
 ## Known Issues
 
-1. You may occasionally encounter a `java.lang.IllegalStateException: Flusher@4df6445d[CLOSED]` from Jetty ([GitHub Issue](https://github.com/eclipse/jetty.project/issues/10519))
-2. Once again, Chrome and Safari do not work due to the self-signed certificate
-3. The `ma` in the `Alt-Svc` header does not seem to be respected by Firefox (due to the self-signed cert?)
+1. Once again, Chrome and Safari do not work due to the self-signed certificate
+2. The `ma` in the `Alt-Svc` header does not seem to be respected by Firefox (due to the self-signed cert?)
