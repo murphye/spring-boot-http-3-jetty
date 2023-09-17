@@ -9,14 +9,14 @@ import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ssl.DefaultSslBundleRegistry;
+import org.springframework.boot.web.embedded.jetty.JettyReactiveWebServerFactory;
 import org.springframework.boot.web.embedded.jetty.JettyServerCustomizer;
-import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Configuration;
 import java.nio.file.Paths;
 
 @Configuration
-public class JettyConfiguration implements WebServerFactoryCustomizer<JettyServletWebServerFactory> {
+public class JettyConfiguration implements WebServerFactoryCustomizer<JettyReactiveWebServerFactory> {
 
     @Autowired
     private DefaultSslBundleRegistry defaultSslBundleRegistry;
@@ -28,8 +28,7 @@ public class JettyConfiguration implements WebServerFactoryCustomizer<JettyServl
     private Integer idleTimeout;
 
     @Override
-    public void customize(JettyServletWebServerFactory factory) {
-
+    public void customize(JettyReactiveWebServerFactory factory) {
         var jettyServerCustomizer = new JettyServerCustomizer() {
             @Override
             public void customize(Server server) {

@@ -1,25 +1,22 @@
 package com.example.demo;
 
-import jakarta.servlet.*;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
+import org.springframework.web.server.ServerWebExchange;
+import org.springframework.web.server.WebFilter;
+import org.springframework.web.server.WebFilterChain;
+import reactor.core.publisher.Mono;
 
 @Component
-public class AddResponseHeaderFilter implements Filter {
+public class AddResponseHeaderFilter implements WebFilter {
 
     @Value( "${server.port}" )
     private Integer serverPort;
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response,
-                         FilterChain chain) throws IOException, ServletException {
-
-        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-        httpServletResponse.setHeader(
-                "Alt-Svc", "h3=\":" + serverPort + "\"; ma=86400; persist=1");
-        chain.doFilter(request, response);
+    public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
+        exchange.getResponse()
+                .getHeaders().add("Alt-Svc", "h3=\":" + serverPort + "\"; ma=86400; persist=1");
+        return chain.filter(exchange);
     }
 }
